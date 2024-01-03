@@ -132,15 +132,41 @@ def play_solo():
                 if keys[pygame.K_LEFT] or keys[pygame.K_q]:
                     if x_joueur > 0:
                         x_joueur -= vitesse_x
+                    else:
+                        x_joueur = largeur_chambre - largeur_joueur
                 if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                     if x_joueur < largeur_chambre - largeur_joueur:
                         x_joueur += vitesse_x
+                    else:
+                        x_joueur = 0
                 if keys[pygame.K_UP] or keys[pygame.K_z]:
                     if y_joueur > 0:
                         y_joueur -= vitesse_y
+                    else:
+                        y_joueur = hauteur_chambre - hauteur_joueur
                 if keys[pygame.K_DOWN] or keys[pygame.K_s]:
                     if y_joueur < hauteur_chambre - hauteur_joueur:
                         y_joueur += vitesse_y
+                    else:
+                        y_joueur = 0
+                if keys[pygame.K_LEFT] and keys[pygame.K_RIGHT] or keys[pygame.K_q] and keys[pygame.K_d]:
+                    if x_joueur < x_cible_mauvaise:
+                         x_joueur += vitesse_x
+                    elif x_joueur > x_cible_mauvaise:
+                         x_joueur -= vitesse_x
+                    if y_joueur < y_cible_mauvaise:
+                         y_joueur += vitesse_y
+                    elif y_joueur > y_cible_mauvaise:
+                            y_joueur -= vitesse_y
+                if keys[pygame.K_UP] and keys[pygame.K_DOWN] or keys[pygame.K_z] and keys[pygame.K_s]:
+                    if x_joueur < x_cible_mauvaise:
+                         x_joueur += vitesse_x
+                    elif x_joueur > x_cible_mauvaise:
+                         x_joueur -= vitesse_x
+                    if y_joueur < y_cible_mauvaise:
+                         y_joueur += vitesse_y
+                    elif y_joueur > y_cible_mauvaise:
+                            y_joueur -= vitesse_y
                 if not any(keys):
                     temps_inactif += 1
                     if temps_inactif >= temps_attirer_mauvaise_cible * 60:  # Convertir le temps en frames
